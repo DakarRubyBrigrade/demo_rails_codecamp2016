@@ -1,0 +1,29 @@
+<%- model_class = Atelier -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => model_class.model_name.human.titleize %></h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt><strong><%= model_class.human_attribute_name(:titre) %>:</strong></dt>
+  <dd><%= @atelier.titre %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:presente_par) %>:</strong></dt>
+  <dd><%= @atelier.presente_par %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:entreprise) %>:</strong></dt>
+  <dd><%= @atelier.entreprise %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:salle_id) %>:</strong></dt>
+  <dd><%= @atelier.salle.nom %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:heure_debut) %>:</strong></dt>
+  <dd><%= l @atelier.heure_debut, format: :short %></dd>
+  <dt><strong><%= model_class.human_attribute_name(:heure_fin) %>:</strong></dt>
+  <dd><%= l @atelier.heure_fin, format: :short %></dd>
+</dl>
+
+<%= link_to t('.back', :default => t("helpers.links.back")),
+              ateliers_path, :class => 'btn btn-default'  %>
+<%= link_to t('.edit', :default => t("helpers.links.edit")),
+              edit_atelier_path(@atelier), :class => 'btn btn-default' %>
+<%= link_to t('.destroy', :default => t("helpers.links.destroy")),
+              atelier_path(@atelier),
+              :method => 'delete',
+              :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) },
+              :class => 'btn btn-danger' %>

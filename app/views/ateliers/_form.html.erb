@@ -1,0 +1,69 @@
+<%= form_for @atelier, :html => { :class => "form-horizontal atelier" } do |f| %>
+
+    <% if @atelier.errors.any? %>
+        <div id="error_expl" class="panel panel-danger">
+          <div class="panel-heading">
+            <h3 class="panel-title"><%= pluralize(@atelier.errors.count, "error") %> prohibited this atelier from being saved:</h3>
+          </div>
+          <div class="panel-body">
+            <ul>
+              <% @atelier.errors.full_messages.each do |msg| %>
+                  <li><%= msg %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+    <% end %>
+
+    <div class="form-group">
+      <%= f.label :titre, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :titre, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:titre) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :presente_par, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :presente_par, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:presente_par) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :entreprise, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.text_field :entreprise, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:entreprise) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :salle_id, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.collection_select :salle_id, Salle.all, :id, :nom, prompt: true %>
+      </div>
+      <%=f.error_span(:salle_id) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :heure_debut, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.time_select :heure_debut, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:heure_debut) %>
+    </div>
+    <div class="form-group">
+      <%= f.label :heure_fin, :class => 'control-label col-lg-2' %>
+      <div class="col-lg-10">
+        <%= f.time_select :heure_fin, :class => 'form-control' %>
+      </div>
+      <%=f.error_span(:heure_fin) %>
+    </div>
+
+    <div class="form-group">
+      <div class="col-lg-offset-2 col-lg-10">
+        <%= f.submit nil, :class => 'btn btn-primary' %>
+        <%= link_to t('.cancel', :default => t("helpers.links.cancel")),
+                    ateliers_path, :class => 'btn btn-default' %>
+      </div>
+    </div>
+
+<% end %>
